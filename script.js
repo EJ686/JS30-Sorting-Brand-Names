@@ -5,9 +5,18 @@ function strip(bandName) {
     return bandName.replace(/^(a |the |an )/i, '').trim();
 }
 const sortedBands = bands.sort(function (a, b) {
-    if (a > b) {
+    // ES6 return strip(a) > strip(b) ? 1 : -1;
+    if (strip(a) > strip(b)) {
         return 1;
     } else {
         return -1;
     }
 });
+
+document.querySelector('#bands').innerHTML =
+  sortedBands
+    .map(band => `<li>${band}</li>`)
+    .join('');
+
+
+console.log(sortedBands)
